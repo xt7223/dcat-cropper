@@ -59,6 +59,7 @@
                         </button>
                     </div>
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 10px">
+                        <button type="button" class="btn btn-info" x-on:click="black()">黑白</button>
                         <button type="button" class="btn btn-info" x-on:click="targetUp()">↑</button>
                         <button type="button" class="btn btn-info" x-on:click="targetDown()">↓</button>
                         <button type="button" class="btn btn-info" x-on:click="targetLeft()">←</button>

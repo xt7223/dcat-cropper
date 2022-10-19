@@ -1,4 +1,4 @@
-if (! window.weiwait_alpine_loaded) {
+if (!window.weiwait_alpine_loaded) {
     window.weiwait_alpine_loaded = true
 
     let alpine = document.createElement('script')
@@ -20,8 +20,8 @@ class CropperImage {
 
     constructor(uri, preview = null) {
         this.id = Math.random() * 10000 | 0
-        this.uri = uri
-        this.preview =  preview ? preview : uri
+        this.uri = preview ? preview : uri
+        this.preview = preview ? preview : uri
     }
 }
 
@@ -42,7 +42,7 @@ class CropperHttp {
     send(method, url, data = null) {
         return new Promise((resolve => {
             this.xml.onreadystatechange = () => {
-                if (this.xml.DONE === this.xml.readyState &&  200 === this.xml.status) {
+                if (this.xml.DONE === this.xml.readyState && 200 === this.xml.status) {
                     resolve(JSON.parse(this.xml.responseText))
                 }
             }
@@ -120,7 +120,7 @@ function weiwait_cropper() {
             for (let file of files) {
                 this.currentFile = file
 
-                if (! this.changing && this.images.length >= this.options.fileNumLimit) {
+                if (!this.changing && this.images.length >= this.options.fileNumLimit) {
                     Dcat.warning('文件数限制：' + this.options.fileNumLimit)
                     this.next()
                     break
@@ -191,7 +191,7 @@ function weiwait_cropper() {
                 this.currentIndex = this.images.push(image) - 1
             }
 
-            if (! this.options.useBase64) {
+            if (!this.options.useBase64) {
                 ((id, type, quality) => {
                     this.Cropper.getCroppedCanvas(resolution).toBlob(blob => {
                         new CropperHttp().post(this.options.croppingUrl, {file: blob}).then(res => {
@@ -255,6 +255,27 @@ function weiwait_cropper() {
             this.modalShow = false
         },
 
+        black() {
+            let d = this.Cropper.getImageData()
+            console.log(d)
+            let canvas = this.Cropper.getCroppedCanvas();
+            let ctx = canvas.getContext("2d")
+            let imgData = ctx.getImageData(0, 0, d.naturalWidth, d.naturalHeight);
+
+            console.log(imgData)
+
+            let data = imgData.data
+
+            for (var i = 0; i < data.length; i += 4) {
+                let grayscale = data[i] * 0.3 + data[i + 1] * 0.6 + data[i + 2] * 0.1
+                data[i + 0] = grayscale // r，红通道
+                data[i + 1] = grayscale // g，绿通道
+                data[i + 2] = grayscale // b，蓝通道
+            }
+            ctx.putImageData(imgData, 0, 0)
+            this.Cropper.replace(canvas.toDataURL("image/jpeg"))
+        },
+
         targetUp() {
             this.Cropper.move(0, -10)
         },
@@ -286,7 +307,7 @@ function weiwait_cropper() {
                 this.currentIndex = this.images.push(this.currentCropperImage) - 1
             }
 
-            if (! this.options.useBase64 && this.currentFile) {
+            if (!this.options.useBase64 && this.currentFile) {
                 ((id, file) => {
                     new CropperHttp().post(this.options.croppingUrl, {file}).then(res => {
                         const i = this.images.findIndex(item => item.id === id)
