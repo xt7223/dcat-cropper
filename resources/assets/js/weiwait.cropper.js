@@ -256,24 +256,36 @@ function weiwait_cropper() {
         },
 
         black() {
+            var that = this
             let d = this.Cropper.getImageData()
             console.log(d)
             let canvas = this.Cropper.getCroppedCanvas();
             let ctx = canvas.getContext("2d")
-            let imgData = ctx.getImageData(0, 0, d.naturalWidth, d.naturalHeight);
+            let image = new Image()
+            image.src = this.croppingData;
+            image.onload = function () {
+                console.log(image.width)
+                console.log(image.height)
+                canvas.width=image.width
+                canvas.height=image.height
+                ctx.clearRect(0, 0, image.width, image.height); //清除画布
+                ctx.drawImage(image, 0, 0, image.width, image.height)
 
-            console.log(imgData)
+                let imgData = ctx.getImageData(0, 0, d.naturalWidth, d.naturalHeight);
 
-            let data = imgData.data
+                console.log(imgData)
 
-            for (var i = 0; i < data.length; i += 4) {
-                let grayscale = data[i] * 0.3 + data[i + 1] * 0.6 + data[i + 2] * 0.1
-                data[i + 0] = grayscale // r，红通道
-                data[i + 1] = grayscale // g，绿通道
-                data[i + 2] = grayscale // b，蓝通道
+                let data = imgData.data
+
+                for (var i = 0; i < data.length; i += 4) {
+                    let grayscale = data[i] * 0.3 + data[i + 1] * 0.6 + data[i + 2] * 0.1
+                    data[i] = grayscale // r，红通道
+                    data[i + 1] = grayscale // g，绿通道
+                    data[i + 2] = grayscale // b，蓝通道
+                }
+                ctx.putImageData(imgData, 0, 0)
+                that.Cropper.replace(canvas.toDataURL("image/jpeg"),true)
             }
-            ctx.putImageData(imgData, 0, 0)
-            this.Cropper.replace(canvas.toDataURL("image/jpeg"))
         },
 
         targetUp() {
