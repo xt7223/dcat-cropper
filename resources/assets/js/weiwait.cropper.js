@@ -263,6 +263,7 @@ function weiwait_cropper() {
             let ctx = canvas.getContext("2d")
             let image = new Image()
             image.src = this.croppingData;
+            image.setAttribute('crossOrigin', '');
             image.onload = function () {
                 console.log(image.width)
                 console.log(image.height)
