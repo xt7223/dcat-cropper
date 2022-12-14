@@ -198,12 +198,14 @@ function weiwait_cropper() {
                             const i = this.images.findIndex(item => item.id === id)
 
                             this.images[i] = new CropperImage(res.name, res.url)
+                            this.next()
                         })
                     }, type, quality)
                 })(image.id, type, this.options.quality)
+            }else {
+                this.next()
             }
 
-            this.next()
         },
 
         resolveResolution() {
