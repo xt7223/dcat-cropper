@@ -111,7 +111,7 @@ function weiwait_cropper() {
                 }
             }
 
-            this.croppingImageElement = document.querySelector('#croppingImg-' + this.column)
+            this.croppingImageElement = document.getElementById('croppingImg-' + this.column)
         },
 
         async selected(e) {
