@@ -1,3 +1,8 @@
+@php
+    $optionsObject=json_decode($options);
+    $optionsObject->elementName;
+    $column=$optionsObject->elementName;
+@endphp
 <div x-data2="weiwait_cropper()" x-init2="_init({{$options}}, '{{$column}}')">
     <div class="{{$viewClass['form-group']}} {{ $class }}">
 
