@@ -326,11 +326,12 @@ function weiwait_cropper() {
                         const i = this.images.findIndex(item => item.id === id)
 
                         this.images[i] = new CropperImage(res.name, res.url)
+                        this.next()
                     })
                 })(this.currentCropperImage.id, this.currentFile)
+            }else {
+                this.next()
             }
-
-            this.next()
         },
 
         changeMode(mode) {
