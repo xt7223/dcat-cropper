@@ -56,31 +56,31 @@
                 </div>
                 <div class="modal-footer">
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 20px">
-                        <button type="button" class="btn btn-info" x-bind:class="modeActive === 'move' ? 'active' : ''" x-on:click="changeMode('move')">
+                        <button type="button" class="btn btn-light" x-bind:class="modeActive === 'move' ? 'active' : ''" x-on:click="changeMode('move')">
                             <span class="fa fa-arrows-alt"></span>
                         </button>
-                        <button type="button" class="btn btn-info" x-bind:class="modeActive === 'crop' ? 'active' : ''" x-on:click="changeMode('crop')">
+                        <button type="button" class="btn btn-light" x-bind:class="modeActive === 'crop' ? 'active' : ''" x-on:click="changeMode('crop')">
                             <span class="fa fa-crop" aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 10px">
-                        <button type="button" class="btn btn-info" x-on:click="black()">置灰</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetUp()">↑</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetDown()">↓</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetLeft()">←</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetRight()">→</button>
-                        <button type="button" class="btn btn-info" x-on:click="Cropper.reset()">重置</button>
-                        <button type="button" class="btn btn-info" x-on:click="deleteCropped()">删除</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetChange()">更换</button>
+                        <button type="button" class="btn btn-light" x-on:click="black()">置灰</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetUp()">↑</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetDown()">↓</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetLeft()">←</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetRight()">→</button>
+                        <button type="button" class="btn btn-light" x-on:click="Cropper.reset()">重置</button>
+                        <button type="button" class="btn btn-light" x-on:click="deleteCropped()">删除</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetChange()">更换</button>
                     </div>
 
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 10px">
-                        <button type="button" class="btn btn-info" x-on:click="original()">原图</button>
-                        <button type="button" class="btn btn-info" x-on:click="cropping()">裁剪</button>
+                        <button type="button" class="btn btn-primary" x-on:click="original()">原图上传</button>
+                        <button type="button" class="btn btn-outline-primary" x-on:click="cropping()">裁剪上传</button>
                     </div>
 
                     <div class="dropdown" x-show="Object.keys(ratios).length > 0">
-                        <button class="btn btn-info dropdown-toggle"
+                        <button class="btn btn-light dropdown-toggle"
                                 type="button"
                                 id="dropdownMenuButton"
                                 data-toggle="dropdown"

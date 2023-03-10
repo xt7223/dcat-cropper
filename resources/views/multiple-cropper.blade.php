@@ -8,7 +8,8 @@
 
             <div class="web-uploader clearfix {{ $fileType }}">
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, 190px); justify-content: space-between; gap: 10px;">
+                <div
+                        style="display: grid; grid-template-columns: repeat(auto-fill, 190px); justify-content: space-between; gap: 10px;">
                     <template x-for="(image, ii) in images" x-bind:key="image.id">
                         <div class="img-thumbnail cropped-img-contain"
                              draggable="true"
@@ -47,7 +48,8 @@
 
     <div x-show="modalShow" x-transition.opacity.duration.200ms
          style="position: fixed; top: 0; left: 0; z-index: 9999; height: 100vh; width: 100vw; display: none;">
-        <div style="display: flex; justify-content: center; align-items: center; height: 100%;" x-on:click.self="next()">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;"
+             x-on:click.self="next()">
             <div style="width: 960px; background-color: white; box-shadow: #cccccc 4px 6px 10px; border-radius: 10px;">
                 <div style="height: 540px;">
                     <img x-bind:src="croppingData" id="croppingImg-{{$column}}" alt=""
@@ -55,41 +57,41 @@
                 </div>
                 <div class="modal-footer">
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 20px">
-                        <button type="button" class="btn btn-info"
+                        <button type="button" class="btn btn-light"
                                 x-bind:class="modeActive === 'move' ? 'active' : ''"
                                 x-on:click="changeMode('move')">
                             <span class="fa fa-arrows-alt"></span>
                         </button>
-                        <button type="button" class="btn btn-info"
+                        <button type="button" class="btn btn-light"
                                 x-bind:class="modeActive === 'crop' ? 'active' : ''"
                                 x-on:click="changeMode('crop')">
                             <span class="fa fa-crop" aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 10px">
-                        <button type="button" class="btn btn-info" x-on:click="targetUp()">↑</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetDown()">↓</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetLeft()">←</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetRight()">→</button>
-                        <button type="button" class="btn btn-info" x-on:click="Cropper.reset()">重置</button>
-                        <button type="button" class="btn btn-info" x-on:click="deleteCropped()">删除</button>
-                        <button type="button" class="btn btn-info" x-on:click="targetChange()">更换</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetUp()">↑</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetDown()">↓</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetLeft()">←</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetRight()">→</button>
+                        <button type="button" class="btn btn-light" x-on:click="Cropper.reset()">重置</button>
+                        <button type="button" class="btn btn-light" x-on:click="deleteCropped()">删除</button>
+                        <button type="button" class="btn btn-light" x-on:click="targetChange()">更换</button>
                     </div>
 
                     <div class="btn-group" role="group" aria-label="..." style="margin: 0 0 0 10px">
-                        <button type="button" class="btn btn-info"
+                        <button type="button" class="btn btn-primary"
                                 x-on:click="original()" x-show="!is_cropping">
-                            原图
+                            原图上传
                         </button>
 
                         <button type="button" class="btn btn-info" x-show="is_cropping">
                             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                         </button>
 
-                        <button type="button" class="btn btn-info"
+                        <button type="button" class="btn btn-outline-primary"
                                 x-on:click="cropping()"
                                 x-show="!is_cropping">
-                            裁剪
+                            裁剪上传
                         </button>
 
                         <button type="button" class="btn btn-info" x-show="is_cropping">
@@ -98,7 +100,7 @@
                     </div>
 
                     <div class="dropdown" x-show="Object.keys(ratios).length > 0">
-                        <button class="btn btn-info dropdown-toggle"
+                        <button class="btn btn-light dropdown-toggle"
                                 type="button"
                                 id="dropdownMenuButton"
                                 data-toggle="dropdown"
