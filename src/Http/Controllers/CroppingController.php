@@ -14,13 +14,13 @@ class CroppingController extends Controller
             'file' => 'required|image',
         ]);
 
-        $file=$request->file('file');
-        $mimeType=$file->getMimeType();
-        if($mimeType=='image/webp'){
-            $temp=$file->getPathname();
-            $im = imagecreatefromwebp($temp);
-            imagepng($im, $temp, 1);
-            imagedestroy($im);
+        $file = $request->file('file');
+        $mimeType = $file->getMimeType();
+        if ($mimeType == 'image/webp') {
+            $temp = $file->getPathname();
+            $im = \imagecreatefromwebp($temp);
+            \imagepng($im, $temp, 1);
+            \imagedestroy($im);
         }
 
         $filename = Storage::disk(config('admin.upload.disk'))
