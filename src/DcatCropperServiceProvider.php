@@ -12,7 +12,7 @@ class DcatCropperServiceProvider extends ServiceProvider
 {
 	protected $js = [
         'js/cropper.min.v1.5.12.js',
-        'js/weiwait.cropper.js',
+//        'js/weiwait.cropper.js',
     ];
 	protected $css = [
 		'css/cropper.min.v1.5.12.css',

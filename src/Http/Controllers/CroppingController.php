@@ -15,13 +15,13 @@ class CroppingController extends Controller
         ]);
 
         $file = $request->file('file');
-        $mimeType = $file->getMimeType();
-        if ($mimeType == 'image/webp') {
-            $temp = $file->getPathname();
-            $im = \imagecreatefromwebp($temp);
-            \imagepng($im, $temp, 1);
-            \imagedestroy($im);
-        }
+//        $mimeType = $file->getMimeType();
+//        if ($mimeType == 'image/webp') {
+//            $temp = $file->getPathname();
+//            $im = \imagecreatefromwebp($temp);
+//            \imagepng($im, $temp, 1);
+//            \imagedestroy($im);
+//        }
 
         $filename = Storage::disk(config('admin.upload.disk'))
             ->putFile('weiwait/cropper', $request->file('file'));
