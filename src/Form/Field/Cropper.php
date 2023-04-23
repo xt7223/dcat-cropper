@@ -46,7 +46,7 @@ class Cropper extends Image
             }
         }
 
-        $this->destroyIfChanged($file);
+//        $this->destroyIfChanged($file);
 
         return $file;
     }
