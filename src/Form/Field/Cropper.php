@@ -29,6 +29,7 @@ class Cropper extends Image
             $this->getStorage()->put($file, $image);
 
             $this->callInterventionMethods($this->getStorage()->path($file), '');
+            $file = $this->getStorage()->url($file);
         } elseif (str_starts_with($file, 'weiwait/cropper')) {
             $storage = Storage::disk(config('admin.upload.disk'));
             $cached = $storage->get($file);
@@ -41,9 +42,10 @@ class Cropper extends Image
 
             foreach ($storage->files('weiwait/cropper') as $item) {
                 if ($storage->lastModified($item) < time() - 3600 * 24) {
-                    $storage->delete($item);
+//                    $storage->delete($item);
                 }
             }
+            $file = $this->getStorage()->url($file);
         }
 
 //        $this->destroyIfChanged($file);

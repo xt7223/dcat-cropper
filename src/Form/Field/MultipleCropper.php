@@ -32,6 +32,7 @@ class MultipleCropper extends MultipleImage
                 $this->getStorage()->put($file, $image);
 
                 $this->callInterventionMethods($this->getStorage()->path($file), $this->getStorage()->mimeType($file));
+                $file = $this->getStorage()->url($file);
             } elseif (str_starts_with($file, 'weiwait/cropper')) {
                 $cached = $storage->get($file);
                 $file = config('admin.upload.directory.image') . '/' . basename($file);
@@ -39,12 +40,13 @@ class MultipleCropper extends MultipleImage
                 $this->getStorage()->put($file, $cached);
 
                 $this->callInterventionMethods($this->getStorage()->path($file), '');
+                $file = $this->getStorage()->url($file);
             }
         }
 
         foreach ($storage->files('weiwait/cropper') as $item) {
             if ($storage->lastModified($item) < time() - 3600 * 24) {
-                $storage->delete($item);
+//                $storage->delete($item);
             }
         }
 

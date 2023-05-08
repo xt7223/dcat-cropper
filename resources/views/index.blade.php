@@ -48,9 +48,15 @@
         </div>
     </div>
 
-    <div x-show="modalShow" x-transition.opacity.duration.200ms style="position: fixed; top: 0; left: 0; z-index: 9999; height: 100vh; width: 100vw; display: none;">
-        <div style="display: flex; justify-content: center; align-items: center; height: 100%;" x-on:click.self="next()">
+    <div x-show="modalShow" x-transition.opacity.duration.200ms style="position: fixed; top: 0; left: 0; z-index: 9999; height: 100vh; width: 100vw; display: none;" >
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;" >
             <div style="width: 960px; background-color: white; box-shadow: #cccccc 4px 6px 10px; border-radius: 10px;">
+                <div class="modal-header">
+                    <h4 class="modal-title">图片剪裁</h4>
+                    <button type="button" class="close" x-on:click="next()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
                 <div style="height: 540px;">
                     <img x-bind:src="croppingData" id="croppingImg-{{$column}}" alt="" style="display: block; max-width: 100%; width: 100%;">
                 </div>
